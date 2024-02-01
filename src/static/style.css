@@ -1,0 +1,41 @@
+.main {
+    margin-top: 50px;
+    width: 60%;
+    /* margin-bottom: 50px; */
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.short_input {
+    width: 50%;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.data-container {
+    border: 1px solid rgba(0,0,0,.8);
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin: 10px;
+    width:100%;
+}
+
+.short_input {
+    padding: 10px;
+}
+
+.dropzone {
+    border: 0px;
+    border-radius: 0px;
+    padding-bottom: 10px;
+}
+
+.modal-body {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+}
