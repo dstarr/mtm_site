@@ -39,3 +39,11 @@
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
 }
+
+.card-row {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

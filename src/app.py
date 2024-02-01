@@ -5,6 +5,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from auth.views import auth_bp
 from search.views import search_bp
 from content.views import content_bp
+from content.services.content_service import ContentService
+
 
 # log app start
 print(f"APP START TIME: {datetime.datetime.now()}")
@@ -18,9 +20,9 @@ app = Flask(__name__)
 config.set_app_config(app)
 
 # register blueprints
-app.register_blueprint(auth_bp, url_prefix='/auth')
-app.register_blueprint(search_bp, url_prefix='/search')
-app.register_blueprint(content_bp, url_prefix='/content')
+app.register_blueprint(auth_bp, url_prefix='/a')
+app.register_blueprint(search_bp, url_prefix='/s')
+app.register_blueprint(content_bp, url_prefix='/c')
 
 @app.route("/")
 def index():

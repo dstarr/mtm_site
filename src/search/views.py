@@ -10,7 +10,6 @@ search_bp = Blueprint(
     static_folder="static"
 )
 
-
 @search_bp.before_request
 def before_request():
     global cosmos_config
