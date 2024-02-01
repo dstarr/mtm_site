@@ -27,3 +27,7 @@ def content_detail(content_id):
         
         model = DetailModel(content=content, playlists_info=content_playlists)
         return render_template('content_detail.html', model=model)
+
+@content_bp.route('/playlist/<playlist_id>')
+def playlist(playlist_id):
+    pass

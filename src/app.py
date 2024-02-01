@@ -29,7 +29,7 @@ def index():
     return render_template("index.html")
 
 @app.context_processor
-def inject_user(): 
+def inject_nav_model(): 
     """
     Injects the user information into the context dictionary.
     'user' dictionary will be available in all templates when logged in.
@@ -37,10 +37,19 @@ def inject_user():
     Returns:
         dict: A dictionary containing the 'user' key and its corresponding value.
     """
+    model = {}
+    
+    # add the current user to the model
     if "user" in session:
-        return dict(user=session['user'])
+        model["user"] = session["user"]
     else:
-        return dict(user=None)
+        model["user"] = None
+        
+    content_service = ContentService()
+    playlists = content_service.get_playlists()
+    model["playlists"] = playlists
+        
+    return dict(nav_model=model)
 
 if __name__ == '__main__':
     app.run( \

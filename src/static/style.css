@@ -50,3 +50,8 @@
 
 .card-text {
     height: 180px;
+}
+
+.dropdown-menu{
+    border-radius: 8px;
+}
