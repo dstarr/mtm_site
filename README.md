@@ -1,2 +1,3 @@
-# mtam
-Mastering the Azure Marketplace
+# Mastering the Azure Marketplace
+
+The public website
