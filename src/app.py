@@ -14,7 +14,7 @@ print(f"APP START TIME: {datetime.datetime.now()}")
 app = Flask(__name__)
 
 # for creating fully qualified URLs
-# app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 # set up app variables
 config.set_app_config(app)
