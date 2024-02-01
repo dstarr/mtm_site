@@ -30,4 +30,10 @@ def content_detail(content_id):
 
 @content_bp.route('/playlist/<playlist_id>')
 def playlist(playlist_id):
-    pass
+    with current_app.app_context():
+        content_service = ContentService()
+        playlist = content_service.get_playlist_with_contents(id=playlist_id)
+        
+        print(playlist)
+        
+        return render_template('playlist.html', model=playlist)

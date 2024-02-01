@@ -15,11 +15,9 @@ class ContentService:
 
     def get_content(self, content_id):
         _, content_collection = self._get_collections()
-
         content = content_collection.find_one({"id": content_id})
-
         return content
-
+    
     def get_playlists_for_content(self, content_id):
         all_playlists = self.get_playlists()
         
@@ -64,9 +62,31 @@ class ContentService:
             {"name": "playlists"}, {"playlists": {"$elemMatch": {"id": id}}}
         )["playlists"][0]
 
-        playlist["contents"] = self.get_contents_for_playlist(playlist["id"])
+        playlist["contents"] = self.get_contents_for_playlist(playlist_id=id)
 
         return playlist
+
+    def get_contents_for_playlist(self, playlist_id):
+        _, content_collection = self._get_collections()
+
+        playlist = content_collection.find(
+            {"playlists": {"$elemMatch": {"id": playlist_id}}}
+        )
+        
+        for content in playlist:
+            print(content)
+
+        contents_info = []
+
+        return contents_info
+
+    def _get_content_info(self, content_id, content_collection):
+        content = content_collection.find_one({"id": content_id}, {"title": 1})
+        
+        print(content)
+        
+        return content
+
 
     def _get_collections(self):
         
