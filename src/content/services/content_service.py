@@ -1,14 +1,10 @@
+from flask import current_app
 from datetime import datetime
-import os
-import uuid
 import pymongo
 
-import config
-
-
 class ContentService:
-    def __init__(self, app_config):
-        self._config = app_config
+    def __init__(self):
+        self._config = current_app.config
 
     def get_all_content(self):
         _, content_collection = self._get_collections()
@@ -37,40 +33,6 @@ class ContentService:
                 
         return content_playlists
         
-    def update_playlists_content(self, content_id, playlist_ids):
-
-        metadata_collection, _ = self._get_collections()
-        playlists_doc = metadata_collection.find_one({"name": "playlists"})
-        
-        new_content_item = {
-            "id": content_id,
-            "display_order": 999
-        }
-        
-        # remove the content from all playlists
-        for playlist in playlists_doc["playlists"]:
-            if playlist["content"] is not None:
-                playlist["content"] = [item for item in playlist["content"] if item["id"] != content_id]
-        
-        # if a playlist is in the list of playlists to add the content to, add it
-        for playlist in playlists_doc["playlists"]:
-            if playlist["id"] in playlist_ids:
-                playlist["content"].append(new_content_item)
-            
-        metadata_collection.update_one({"name": "playlists"}, {"$set": playlists_doc})
-
-    def add_content(self, content):
-        _, content_collection = self._get_collections()
-
-        content_collection.insert_one(content)
-
-    def update_content(self, content_to_update):
-
-        _, content_collection = self._get_collections()
-
-        content_id = content_to_update["id"]
-        content_collection.update_one({"id": content_id}, {"$set": content_to_update})
-
     def get_playlists(self):
         metadata_collection, _ = self._get_collections()
 
@@ -105,30 +67,6 @@ class ContentService:
         playlist["contents"] = self.get_contents_for_playlist(playlist["id"])
 
         return playlist
-
-    def update_playlist_name(self, id, name):
-        metadata_collection, _ = self._get_collections()
-
-        playlists_doc = metadata_collection.find_one({"name": "playlists"})
-
-        for playlist in playlists_doc["playlists"]:
-            if str(playlist["id"]) == id:
-                playlist["name"] = name
-                break
-
-        metadata_collection.update_one({"name": "playlists"}, {"$set": playlists_doc})
-
-    def update_playlist_content_display_order(self, playlist_id, content_items):
-        metadata_collection, _ = self._get_collections()
-
-        playlists_doc = metadata_collection.find_one({"name": "playlists"})
-
-        for playlist in playlists_doc["playlists"]:
-            if str(playlist["id"]) == playlist_id:
-                playlist["content"] = content_items
-                break
-        
-        metadata_collection.update_one({"name": "playlists"}, {"$set": playlists_doc})
 
     def _get_collections(self):
         

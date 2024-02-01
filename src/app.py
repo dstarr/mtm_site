@@ -1,22 +1,26 @@
-import os
+import datetime
 from flask import Flask, render_template, redirect, url_for, session, request
 import config
 from werkzeug.middleware.proxy_fix import ProxyFix
 from auth.views import auth_bp
 from search.views import search_bp
+from content.views import content_bp
 
+# log app start
+print(f"APP START TIME: {datetime.datetime.now()}")
 
 app = Flask(__name__)
 
 # for creating fully qualified URLs
-app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+# app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+
+# set up app variables
+config.set_app_config(app)
 
 # register blueprints
 app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(search_bp, url_prefix='/search')
-
-# set up app variables
-config.set_app_config(app)
+app.register_blueprint(content_bp, url_prefix='/content')
 
 @app.route("/")
 def index():
@@ -37,4 +41,7 @@ def inject_user():
         return dict(user=None)
 
 if __name__ == '__main__':
-    app.run(port=config.FLASK_PORT, debug=config.FLASK_DEBUG)
+    app.run( \
+        debug=app.config["FLASK_DEBUG"], \
+        port=app.config["FLASK_PORT"] \
+    )
