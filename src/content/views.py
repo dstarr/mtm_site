@@ -1,10 +1,11 @@
 from datetime import datetime
 import uuid
-from flask import Blueprint, redirect, render_template, request, session, url_for
+from flask import Blueprint, redirect, render_template, request, session, url_for, current_app
+
 from services.file_service import FileService, FileType
 from services.content_service import ContentService
-from content.models.detail_model import DetailModel
-from content.models.edit_model import EditModel
+from models.detail_model import DetailModel
+from models.edit_model import EditModel
 
 content_bp = Blueprint(
     "content", __name__, 
@@ -12,8 +13,8 @@ content_bp = Blueprint(
     static_folder="static",
 )
 
-content_service = ContentService()
-file_service = FileService()
+content_service = ContentService(app_config=current_app.config)
+file_service = FileService(app_config=current_app.config)
 
 @content_bp.route('/')
 def index():

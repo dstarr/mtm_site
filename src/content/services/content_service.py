@@ -7,8 +7,8 @@ import config
 
 
 class ContentService:
-    def __init__(self):
-        pass
+    def __init__(self, app_config):
+        self._config = app_config
 
     def get_all_content(self):
         _, content_collection = self._get_collections()
@@ -132,27 +132,27 @@ class ContentService:
 
     def _get_collections(self):
         
-        client = pymongo.MongoClient(config.COSMOS_DB_CONNECTION_STRING)
-        db = client[config.COSMOS_DB_NAME]
+        client = pymongo.MongoClient(self._config["COSMOS_DB_CONNECTION_STRING"])
+        db = client[self._config["COSMOS_DB_NAME"]]
 
-        content_collection = db[config.COSMOS_DB_CONTENT_COLLECTION_NAME]
-        metadata_collection = db[config.COSMOS_DB_METADATA_COLLECTION_NAME]
+        content_collection = db[self._config["COSMOS_DB_CONTENT_COLLECTION_NAME"]]
+        metadata_collection = db[self._config["COSMOS_DB_METADATA_COLLECTION_NAME"]]
 
         # create the collection if it does not exist
-        if db[config.COSMOS_DB_CONTENT_COLLECTION_NAME] is None:
+        if db[self._config["COSMOS_DB_CONTENT_COLLECTION_NAME"]] is None:
             content_collection = db.create_collection(
-                name=config.COSMOS_DB_CONTENT_COLLECTION_NAME
+                name=self._config["COSMOS_DB_CONTENT_COLLECTION_NAME"]
             )
         else:
-            content_collection = db[config.COSMOS_DB_CONTENT_COLLECTION_NAME]
+            content_collection = db[self._config["COSMOS_DB_CONTENT_COLLECTION_NAME"]]
 
         # create the collection if it does not exist
-        if db[config.COSMOS_DB_METADATA_COLLECTION_NAME] is None:
+        if db[self._config["COSMOS_DB_METADATA_COLLECTION_NAME"]] is None:
             metadata_collection = db.create_collection(
-                name=config.COSMOS_DB_METADATA_COLLECTION_NAME
+                name=self._config["COSMOS_DB_METADATA_COLLECTION_NAME"]
             )
         else:
-            metadata_collection = db[config.COSMOS_DB_METADATA_COLLECTION_NAME]
+            metadata_collection = db[self._config["COSMOS_DB_METADATA_COLLECTION_NAME"]]
 
         return metadata_collection, content_collection
 
