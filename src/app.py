@@ -5,6 +5,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from auth.views import auth_bp
 from search.views import search_bp
 
+
 app = Flask(__name__)
 
 # for creating fully qualified URLs
