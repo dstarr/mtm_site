@@ -62,9 +62,8 @@ class ContentService:
             {"name": "playlists"}, {"playlists": {"$elemMatch": {"id": playlist_id}}}
         )["playlists"][0]
 
-        content_infos = []
-        
         sorted_playlist_content = sorted(playlist["content"], key=lambda x: x['display_order'])
+        content_infos = []
         
         for content_pointer in sorted_playlist_content:
             content_info = self._get_content_info(content_pointer["id"], content_collection)
@@ -81,8 +80,6 @@ class ContentService:
             "id": content_id,
             "title": content["title"]
         }
-        
-        return content
 
 
     def _get_collections(self):
