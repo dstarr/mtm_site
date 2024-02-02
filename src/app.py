@@ -47,6 +47,11 @@ def inject_nav_model():
         
     content_service = ContentService()
     playlists = content_service.get_playlists()
+    
+    playlists = sorted(playlists, key=lambda x: x['short_name'])
+    
+    
+    
     model["playlists"] = playlists
         
     return dict(nav_model=model)
