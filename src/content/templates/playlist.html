@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h3>{{ model["name"] }}</h3>
+  <h3 class="content-detail-title">{{ model["name"] }}</h3>
 
-  <div class="list-group">
-
+  <div class="list-group list-group-flush">
     {% for content in model["content"]: %}
-      <a href="{{ url_for('content.content_detail', content_id=content['id']) }}" class="list-group-item list-group-item-action content-list-item">{{ content["title"] }}</a>
+      <a href="{{ url_for('content.content_detail', content_id=content['id']) }}" class="list-group-item list-group-item-action list-item-content-title">{{ content["title"] }}</a>
     {% endfor %}
-  
   </div>
   
 {% endblock %}

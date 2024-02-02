@@ -58,8 +58,17 @@
     border: 1px solid blue;
 }
 
-.content-list-item {
+.list-item-content-title {
     font-size: 15pt;
+}
 
+.content-detail-title {
+    font-size: 20pt;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.content-links {
+    margin-bottom: 20px;
 }
 
