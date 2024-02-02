@@ -10,13 +10,6 @@ content_bp = Blueprint(
     static_folder="static",
 )
 
-@content_bp.route('/')
-def index():
-    with current_app.app_context():
-        content_service = ContentService()
-        content = content_service.get_all_content()
-        return render_template('index.html', model=content)
-
 @content_bp.route('/<content_id>')
 def content_detail(content_id):
     with current_app.app_context():
