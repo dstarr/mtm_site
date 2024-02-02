@@ -10,19 +10,66 @@
         </p>
     </div>
 
+
+    <!-- Hot topic vertical accordian -->
+    <div class="accordion" id="news-accordian">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="webinar-news">
+            <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <strong>Live and recorded marketplace webinars!</strong>
+            </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="webinar-news" data-bs-parent="#news-accordian">
+            <div class="accordion-body">
+                <p>
+                    Webinars occur almost daily and cover all things marketplace from technical implementations to accelerating your business.
+                </p>
+                <p>
+                    Not only can you attend live, but webinars are recorded for later viewing.
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="https://aka.ms/MTMwebinars" target="_blank">Check out the schedule</a>
+                </p>
+            </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="workshop-news">
+            <button class="accordion-button bg-light text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <strong>Technical workshops posted</strong>
+            </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="workshop-news" data-bs-parent="#news-accordian">
+            <div class="accordion-body">
+                <p>
+                    Learn from your favorite Mastering the Marketplace content authors in live virtual workshops focused on specific technologies and offer types. 
+                </p>
+                <p>
+                    Workshops are a great opportunity to get from concept to reality in building your solutions for the marketplace.
+                </p>
+                <p>
+                    <a class="btn btn-primary" href="https://aka.ms/MTMworkshops" target="_blank">Sign up for a workshop</a>
+                </p>
+
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- end accordian -->
+
     <div>
+
         <div class="row card-row">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Mastering SaaS offers</h5>
+                        <h5 class="card-title">Mastering Partner Center</h5>
                         <div class="card-text">
                             <p>
-                                This comprehensive content takes you through all you need to get a custom SaaS offer up and running. 
+                                Partner Center is the web portal used to create and publish offers.
                             </p>
                             <p>
-                                From landing pages to webhooks, the technical course will help you get your SaaS offer up and 
-                                running in days instead of weeks.
+                                Learn more about Partner Center in this ever-expanding content demonstarting how to use the portal to publish offers and more.
                             </p>
                         </div>
                         <a href="#" class="btn btn-primary">Take me to it</a>
@@ -43,9 +90,49 @@
                         </div>
                         <a href="#" class="btn btn-primary">Take me to it</a>
                     </div>
+
                 </div>
             </div>
         </div>
+
+        <div class="row card-row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mastering SaaS offers</h5>
+                        <div class="card-text">
+                            <p>
+                                This comprehensive content takes you through all you need to get a custom SaaS offer up and running. 
+                            </p>
+                            <p>
+                                From landing pages to webhooks, the technical course will help you get your SaaS offer up and 
+                                running in days instead of weeks.
+                            </p>
+                        </div>
+                        <a href="#" class="btn btn-primary">Take me to it</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mastering container offers</h5>
+                            <div class="card-text">
+                                <p>
+                                    Do you want to deliver your software solution in containers that can run on your customer's Azure Kubernetes Service?
+                                </p>
+                                <p>
+                                    Learn how in this demo-heavy technical course taht takes you step-by-step through the process.
+                                </p>                         
+                            </div>
+                            <a href="#" class="btn btn-primary">Take me to it</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row card-row">
             <div class="col-sm-6">
@@ -76,6 +163,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
 {% endblock %}
