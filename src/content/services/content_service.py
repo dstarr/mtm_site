@@ -72,7 +72,6 @@ class ContentService:
         playlist["content"] = content_infos
         return playlist
 
-
     def _get_content_info(self, content_id, content_collection):
         content = content_collection.find_one({"id": content_id}, {"title": 1})
         

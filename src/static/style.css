@@ -57,3 +57,7 @@
     border-radius: 8px;
     border: 1px solid blue;
 }
+
+.content-list-item {
+    font-size: 15pt;
+}
