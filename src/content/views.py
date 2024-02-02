@@ -28,12 +28,10 @@ def content_detail(content_id):
         model = DetailModel(content=content, playlists_info=content_playlists)
         return render_template('content_detail.html', model=model)
 
-@content_bp.route('/playlist/<playlist_id>')
+@content_bp.route('/p/<playlist_id>')
 def playlist(playlist_id):
     with current_app.app_context():
         content_service = ContentService()
-        playlist = content_service.get_playlist_with_contents(id=playlist_id)
-        
-        print(playlist)
+        playlist = content_service.get_playlist_with_content_infos(playlist_id=playlist_id)
         
         return render_template('playlist.html', model=playlist)

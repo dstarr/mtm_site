@@ -55,35 +55,32 @@ class ContentService:
 
         return playlist
 
-    def get_playlist_with_contents(self, id):
-        metadata_collection, _ = self._get_collections()
+    def get_playlist_with_content_infos(self, playlist_id):
+        metadata_collection, content_collection = self._get_collections()
 
         playlist = metadata_collection.find_one(
-            {"name": "playlists"}, {"playlists": {"$elemMatch": {"id": id}}}
+            {"name": "playlists"}, {"playlists": {"$elemMatch": {"id": playlist_id}}}
         )["playlists"][0]
 
-        playlist["contents"] = self.get_contents_for_playlist(playlist_id=id)
-
+        content_infos = []
+        
+        sorted_playlist_content = sorted(playlist["content"], key=lambda x: x['display_order'])
+        
+        for content_pointer in sorted_playlist_content:
+            content_info = self._get_content_info(content_pointer["id"], content_collection)
+            content_infos.append(content_info)
+        
+        playlist["content"] = content_infos
         return playlist
 
-    def get_contents_for_playlist(self, playlist_id):
-        _, content_collection = self._get_collections()
-
-        playlist = content_collection.find(
-            {"playlists": {"$elemMatch": {"id": playlist_id}}}
-        )
-        
-        for content in playlist:
-            print(content)
-
-        contents_info = []
-
-        return contents_info
 
     def _get_content_info(self, content_id, content_collection):
         content = content_collection.find_one({"id": content_id}, {"title": 1})
         
-        print(content)
+        return {
+            "id": content_id,
+            "title": content["title"]
+        }
         
         return content
 

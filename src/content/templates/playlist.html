@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <h3>Playlist</h3>
+  <h3>{{ model["name"] }}</h3>
+
+  <div class="list-group">
+
+    {% for content in model["content"]: %}
+      <a href="{{ content['id'] }}" class="list-group-item list-group-item-action">{{ content["title"] }}</a>
+    {% endfor %}
+  
+  </div>
   
 {% endblock %}
