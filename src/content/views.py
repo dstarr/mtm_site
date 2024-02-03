@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, current_app
+from flask import Blueprint, abort, redirect, render_template, current_app, url_for
+
+from models.error_model import ErrorModel
 
 # from .services.file_service import FileService, FileType
 from .services.content_service import ContentService
@@ -16,15 +18,22 @@ def content_detail(content_id):
         content_service = ContentService()
 
         content = content_service.get_content(content_id)
-        content_playlists = content_service.get_playlists_for_content(content_id)
+        if content is None:
+            abort(404)
         
+        content_playlists = content_service.get_playlists_for_content(content_id)
+                
         model = DetailModel(content=content, playlists_info=content_playlists)
+    
         return render_template('content_detail.html', model=model)
+        
 
 @content_bp.route('/p/<playlist_id>')
 def playlist(playlist_id):
     with current_app.app_context():
         content_service = ContentService()
         playlist = content_service.get_playlist_with_content_infos(playlist_id=playlist_id)
+        if playlist is None:
+            abort(404)
         
         return render_template('playlist.html', model=playlist)

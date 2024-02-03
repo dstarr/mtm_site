@@ -6,6 +6,7 @@ from auth.views import auth_bp
 from search.views import search_bp
 from content.views import content_bp
 from content.services.content_service import ContentService
+from models.error_model import ErrorModel
 
 
 # log app start
@@ -27,6 +28,11 @@ app.register_blueprint(content_bp, url_prefix='/c')
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    error_model = ErrorModel("Resource not found", "The requested content was not found.")
+    return render_template('error.html', model=error_model), 404
 
 @app.context_processor
 def inject_nav_model(): 
