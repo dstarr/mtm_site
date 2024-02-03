@@ -28,8 +28,12 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('content.content_log', num_items=5) }}">Content change log</a></li>
             </ul>
+          </li>
+          <!-- contact -->
+          <li class="nav-item">
+            <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact us</a>
           </li>
           <!-- User -->
           {% if nav_model["user"] %}
@@ -46,11 +50,6 @@
               <a class="active nav-link" href="{{ url_for('auth.login') }}">Sign in</a>
             </li>
           {% endif %}
-          <!-- contact -->
-          <li class="nav-item">
-            <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact</a>
-          </li>
-
         </ul>
 
         <!-- search -->
@@ -62,4 +61,3 @@
       </div>
     </div>
   </nav>
-  

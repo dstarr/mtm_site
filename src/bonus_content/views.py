@@ -1,5 +1,6 @@
 from flask import Blueprint, abort, render_template
 from jinja2 import TemplateNotFound
+from content.services.content_service import ContentService
 
 bonus_content_bp = Blueprint(
     "bonus_content", __name__, 
@@ -13,3 +14,4 @@ def page(page):
         return render_template(f'{page}.html')
     except TemplateNotFound:
         abort(404)
+        

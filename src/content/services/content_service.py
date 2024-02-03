@@ -81,6 +81,16 @@ class ContentService:
         playlist["content"] = content_infos
         return playlist
 
+    def get_most_recent_content(self, num_results):
+        _, content_collection = self._get_collections()
+
+        items = content_collection \
+            .find({}, {'id': 1, 'title': 1, 'date_created': 1}) \
+            .sort('date_created', 1) \
+            .limit(num_results)
+
+        return items
+
     def _get_content_info(self, content_id, content_collection):
         content = content_collection.find_one({"id": content_id}, {"title": 1})
         
@@ -88,7 +98,6 @@ class ContentService:
             "id": content_id,
             "title": content["title"]
         }
-
 
     def _get_collections(self):
         
