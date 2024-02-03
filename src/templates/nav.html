@@ -6,32 +6,32 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+          <!-- home -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
           </li>
-          
-          {% if nav_model["playlists"] %}
-            <li class="nav-item dropdown">
-              <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Courses
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                {% for playlist in nav_model["playlists"] %}
-                  <li><a class="dropdown-item" href="{{ url_for('content.playlist', playlist_id=playlist['id']) }}">{{ playlist["short_name"] }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% endif %}
-
+          <!-- Courses (playlists) -->
+          <li class="nav-item dropdown">
+            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Courses
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for playlist in nav_model["playlists"] %}
+                <li><a class="dropdown-item" href="{{ url_for('content.playlist', playlist_id=playlist['id']) }}">{{ playlist["short_name"] }}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <!-- Bonus content -->
           <li class="nav-item dropdown">
             <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Bonus content
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
             </ul>
           </li>
-
+          <!-- User -->
           {% if nav_model["user"] %}
             <li class="nav-item dropdown">
               <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,13 +43,20 @@
             </li>
           {% else %}
             <li class="nav-item">
-              <a class=" active nav-link" href="{{ url_for('auth.login') }}">Sign in</a>
+              <a class="active nav-link" href="{{ url_for('auth.login') }}">Sign in</a>
             </li>
           {% endif %}
+          <!-- contact -->
+          <li class="nav-item">
+            <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact</a>
+          </li>
+
         </ul>
+
+        <!-- search -->
         <form class="d-flex" method="post" action="{{ url_for('search.search_results') }}">
           <input class="form-control me-2" type="search" placeholder="Search content" aria-label="Search"
-          name="search_term">
+          name="search_term" maxlength="30">
           <button id="search_button" class="btn text-light" type="submit">Search</button>
         </form>
       </div>
