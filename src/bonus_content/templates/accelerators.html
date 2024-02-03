@@ -2,9 +2,156 @@
 
 {% block content %}
 
-    <div>
-        <h2>Marketplace Accelerators</h2>
-        
+<div>
+    <h2>Marketplace technical accelerators</h2>
+    
+    <p>
+        Technical accelerators are a set of tools and resources that help you to build, test, and deploy your solutions faster.
+        They are designed to help you to accelerate your offer development and reduce the time to market for your marketplace offer.
+    </p>
+    <p>
+        Resources on this page include both technical accelerators and example references.
+    </p>
+</div>
+
+<div class="accordion" id="accordionExample">
+    <!-- SaaS Accelerator -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading1">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            SaaS Accelerator
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <p>
+                The SaaS Accelerator provides a fully functional community-led SaaS reference implementation for those interested in publishing transactable SaaS offers in Microsoft's marketplace in hours instead of days. In support of the Saas Accelerator, the Mastering the Marketplace content library has a complete course on how to build a SaaS offer using the SaaS Accelerator.
+            </p>
+            <ul>
+                <li><a href="https://aka.ms/SaaSAccelerator" target="_blank">SaaS Accelerator on GitHub</a></li>
+                <li><a href="{{ url_for('content.playlist', playlist_id='f7b33259-1fdc-4641-aa7e-a77d5e19146a') }}">SaaS Accelerator course</a></li>
+            </ul>
+        </div>
+      </div>
     </div>
+    <!-- .NET SaaS client library -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+            .NET SaaS client library
+        </button>
+      </h2>
+      <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <p>
+                The .NET SaaS client library helps you build your SaaS offer with strongly-typed wrappers on top of the SaaS Fulfillment and Metered Billing APIs that you can use in building your own integrations to the marketplace.
+            </p>
+            <ul>
+                <li><a href="https://www.nuget.org/packages/Marketplace.SaaS.Client" target="_blank">.NET client library on NuGet</a></li>
+                <li><a href="https://github.com/microsoft/commercial-marketplace-client-dotnet" target="_blank">.NET client library on GitHub</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Java SaaS client library -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+            Java SaaS client library
+        </button>
+      </h2>
+      <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+            <p>
+                The Java SaaS client library helps you build your SaaS offer with strongly-typed wrappers on top of the SaaS Fulfillment and Metered Billing APIs that you can use in building your own integrations to the marketplace.
+            </p>
+            <ul>
+                <li><a href="https://github.com/microsoft/commercial-marketplace-client-java" target="_blank">Java client library on GitHub</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Custom meters accelerator -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading5">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                Custom Meters Accelerator
+            </button>
+        </h2>
+        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <p>
+                    A production-ready opensource solution that enables partners to implement and manage advanced meter models for Managed Application offers, such as yearly and milestone payments.​ This solution enables scheduling billing events to occur in the future.
+                </p>
+                <p>  
+                    ​Empowers partners to surpass the constraints of current meter features, tailoring meter approaches to fit unique business requirements.
+                </p>
+                <ul>
+                    <li><a href="https://github.com/microsoft/custom-meters-accelerator" target="_blank">Project on GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Metered Billing Accelerator -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+            Metered Billing Accelerator
+          </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+            Developers enabling their Azure Managed Application or SaaS offers in the Azure Marketplace must keep track of the metered billing usage in their code and only send usage events to Microsoft for the usage that is above the base fee. This is a requirement for all offers that leverage metered billing.
+        </p>
+        <p>
+            The Metered Billing Accelerator is a tool to help you build and deploy your metered billing offer with minimal impact to your core application code, enabling applications to emit metered billing events to Microsoft with minimal changes to the application code.
+        </p>
+        <ul>
+            <li><a href="https://www.youtube.com/watch?v=OB8dcYvNlCM" target="_blank">Marketplace Mini video overview</a></li>
+            <li><a href="https://github.com/microsoft/Commercial-Marketplace-Meters-Accelerator" target="_blank">The GitHub project</a></li>
+        </ul>
+          </div>
+        </div>
+    </div>
+    <!-- Commercial Marketplace solutions repository -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading6">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+            Commercial Marketplace starter solutions
+          </button>
+        </h2>
+        <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+                A collection of starter solutions to enable various marketplace scenarios. See the following GitHub repository for details.
+            </p>
+            <ul>
+                <li><a href="https://github.com/microsoft/commercial-marketplace-solutions" target="_blank">The GitHub project</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <!-- ARM TTK -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading7">
+          <button class="accordion-button bg-light text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+            ARM-TTK
+          </button>
+        </h2>
+        <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>
+            A PowerShell tool for analyzing and testing Azure Resource Manager templates and CreateUiDefinition.json files. The tests will check a for coding best practices.
+        </p>
+        <ul>
+            <li><a href="https://github.com/Azure/arm-ttk" target="_blank">The GitHub project</a></li>
+        </ul>
+          </div>
+        </div>
+    </div>
+
+
+  </div>
 
 {% endblock %}
