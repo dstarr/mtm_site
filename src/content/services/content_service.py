@@ -1,4 +1,4 @@
-from flask import current_app
+from flask import current_app, make_response
 from datetime import datetime
 import pymongo
 
@@ -16,6 +16,7 @@ class ContentService:
     def get_content(self, content_id):
         _, content_collection = self._get_collections()
         content = content_collection.find_one({"id": content_id})
+
         return content
     
     def get_playlists_for_content(self, content_id):
@@ -35,7 +36,7 @@ class ContentService:
         metadata_collection, _ = self._get_collections()
 
         playlists = metadata_collection.find_one({"name": "playlists"})
-
+        
         return playlists["playlists"]
 
     def get_playlist(self, id):
@@ -48,20 +49,28 @@ class ContentService:
             {
                 "playlists": { "$elemMatch": {"id": id} }
             }
-        )["playlists"][0]
-
+        )
+        
         if playlist is None:
-            raise Exception(f"Playlist with id {id} not found")
-
-        return playlist
+            return None
+        
+        return playlist["playlists"][0]
 
     def get_playlist_with_content_infos(self, playlist_id):
         metadata_collection, content_collection = self._get_collections()
 
-        playlist = metadata_collection.find_one(
+        results = metadata_collection.find_one(
             {"name": "playlists"}, {"playlists": {"$elemMatch": {"id": playlist_id}}}
-        )["playlists"][0]
-
+        )
+        
+        try:
+            results = results["playlists"][0]
+        
+        except KeyError:
+            return None
+        
+        playlist = results
+        
         sorted_playlist_content = sorted(playlist["content"], key=lambda x: x['display_order'])
         content_infos = []
         
