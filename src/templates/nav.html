@@ -23,10 +23,19 @@
             </li>
           {% endif %}
 
+          <li class="nav-item dropdown">
+            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Bonus content
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
+            </ul>
+          </li>
+
           {% if nav_model["user"] %}
             <li class="nav-item dropdown">
               <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ user["name"] }}
+                {{ nav_model["user"]["name"] }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Sign out</a></li>

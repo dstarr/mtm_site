@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, session, request
 import config
 from werkzeug.middleware.proxy_fix import ProxyFix
 from auth.views import auth_bp
+from bonus_content.views import bonus_content_bp
 from search.views import search_bp
 from content.views import content_bp
 from content.services.content_service import ContentService
@@ -20,7 +21,9 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 config.set_app_config(app)
 
 # register blueprints
+
 app.register_blueprint(auth_bp, url_prefix='/a')
+app.register_blueprint(bonus_content_bp, url_prefix='/b')
 app.register_blueprint(search_bp, url_prefix='/s')
 app.register_blueprint(content_bp, url_prefix='/c')
 
@@ -49,8 +52,6 @@ def inject_nav_model():
     playlists = content_service.get_playlists()
     
     playlists = sorted(playlists, key=lambda x: x['short_name'])
-    
-    
     
     model["playlists"] = playlists
         
