@@ -22,7 +22,6 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 config.set_app_config(app)
 
 # register blueprints
-
 app.register_blueprint(auth_bp, url_prefix='/a')
 app.register_blueprint(bonus_content_bp, url_prefix='/b')
 app.register_blueprint(search_bp, url_prefix='/s')

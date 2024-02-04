@@ -11,22 +11,6 @@ def _print_env_vars():
 def _confirm_env_vars_set():
     env_vars_set = True
 
-    # if os.environ.get("AZURE_TENANT_ID") == None:
-    #     print("AZURE_TENANT_ID is not set")
-    #     env_vars_set = False
-        
-    # if os.environ.get("AZURE_CLIENT_ID") == None:
-    #     print("AZURE_CLIENT_ID is not set")
-    #     env_vars_set = False
-
-    # if os.environ.get("AZURE_CLIENT_SECRET") == None:
-    #     print("AZURE_CLIENT_SECRET is not set")
-    #     env_vars_set = False
-
-    if os.environ.get("COSMOS_DB_METADATA_COLLECTION_NAME") == None:
-        print("COSMOS_DB_METADATA_COLLECTION_NAME is not set")
-        env_vars_set = False
-
     if os.environ.get("AURE_STORAGE_CONNECTION_STRING") == None:
         print("AURE_STORAGE_CONNECTION_STRING is not set")
         env_vars_set = False
@@ -92,35 +76,16 @@ def _confirm_env_vars_set():
 def set_app_config(app):
     
     _confirm_env_vars_set()
-    
-    # AZURE_AUTHORITY = f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
-    
-    # MSAL configuration
-    # app.config["MSAL_AUTHORIZE_ENDPOINT"] = f"{AZURE_AUTHORITY}/oauth2/v2.0/authorize"
-    # app.config["MSAL_CLIENT_ID"] = os.environ.get("AZURE_CLIENT_ID")
-    # app.config["MSAL_CLIENT_SECRET"] = os.environ.get("AZURE_CLIENT_SECRET")
-    # app.config["MSAL_SCOPE"] = ["User.Read"]
-    # app.config["MSAL_TOKEN_ENDPOINT"] = f"{AZURE_AUTHORITY}/oauth2/v2.0/token"
-
-    # azure integration
-    # AZURE_TENANT_ID=os.environ.get("AZURE_TENANT_ID")
-    # app.config["AZURE_AUTHORITY"]=f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
-    # app.config["AZURE_CLIENT_ID"]=os.environ.get("AZURE_CLIENT_ID")
-    # app.config["AZURE_CLIENT_SECRET"]=os.environ.get("AZURE_CLIENT_SECRET")
-    # app.config["AZURE_ENDPOINT"] = 'https://graph.microsoft.com/v1.0/users'
-    # app.config["AZURE_REDIRECT_PATH"] = "/content/"
-    # app.config["AZURE_SCOPE"] = ["User.Read"]
-    # app.config["AZURE_TENANT_ID"]=AZURE_TENANT_ID
-
+   
     # cosmos db integration for content
     app.config["COSMOS_DB_CONNECTION_STRING"] = os.environ.get("COSMOS_DB_CONNECTION_STRING")
     app.config["COSMOS_DB_CONTENT_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_CONTENT_COLLECTION_NAME")
     app.config["COSMOS_DB_METADATA_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_METADATA_COLLECTION_NAME")
     app.config["COSMOS_DB_NAME"] = os.environ.get("COSMOS_DB_NAME")
-
+    
     # azure storage integration
     app.config["AURE_STORAGE_CONNECTION_STRING"]=os.environ.get("AURE_STORAGE_CONNECTION_STRING")
-    
+
     # blob storage integration for files
     app.config["BLOB_STORAGE_CONTAINER_NAME_OTHER"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_OTHER")
     app.config["BLOB_STORAGE_CONTAINER_NAME_PDFS"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_PDFS")
