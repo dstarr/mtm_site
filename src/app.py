@@ -34,8 +34,15 @@ def index():
 
 @app.errorhandler(404)
 def page_not_found(e):
+    print(f"404 error: {e}")
     error_model = ErrorModel("Resource not found", "The requested content was not found.")
     return render_template('error.html', model=error_model), 404
+
+@app.errorhandler(500)
+def error(e):
+    print(f"500 error: {e}")
+    error_model = ErrorModel("An error occurred", "Please wait a moment and try your request again.")
+    return render_template('error.html', model=error_model), 500
 
 @app.context_processor
 def inject_nav_model(): 

@@ -1,7 +1,6 @@
 import datetime
-from flask import Blueprint, redirect, render_template, request, session, url_for
-import msal
-import config
+from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from .services.table_storage_service import TableStorageService
 
 
 auth_bp = Blueprint(
@@ -15,9 +14,14 @@ def signin():
 
     company_name = request.form["companyname"]
     company_url = request.form["companyurl"]
-    time_and_date = datetime.datetime.now()
     
-    # save them to the database
+    # save them to the databasee
+    try:
+        table_storage_service = TableStorageService()
+        table_storage_service.insert_entity(company_name=company_name, company_url=company_url)
+    except Exception as e:
+        print("Error inserting entity")
+        abort(500)
     
     # set the user session
     session["user"] = {
