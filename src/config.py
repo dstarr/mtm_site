@@ -84,24 +84,24 @@ def set_app_config(app):
     
     _confirm_env_vars_set()
     
-    AZURE_TENANT_ID=os.environ.get("AZURE_TENANT_ID")
-    AZURE_AUTHORITY = f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
+    # AZURE_AUTHORITY = f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
     
     # MSAL configuration
-    app.config["MSAL_AUTHORIZE_ENDPOINT"] = f"{AZURE_AUTHORITY}/oauth2/v2.0/authorize"
-    app.config["MSAL_CLIENT_ID"] = os.environ.get("AZURE_CLIENT_ID")
-    app.config["MSAL_CLIENT_SECRET"] = os.environ.get("AZURE_CLIENT_SECRET")
-    app.config["MSAL_SCOPE"] = ["User.Read"]
-    app.config["MSAL_TOKEN_ENDPOINT"] = f"{AZURE_AUTHORITY}/oauth2/v2.0/token"
+    # app.config["MSAL_AUTHORIZE_ENDPOINT"] = f"{AZURE_AUTHORITY}/oauth2/v2.0/authorize"
+    # app.config["MSAL_CLIENT_ID"] = os.environ.get("AZURE_CLIENT_ID")
+    # app.config["MSAL_CLIENT_SECRET"] = os.environ.get("AZURE_CLIENT_SECRET")
+    # app.config["MSAL_SCOPE"] = ["User.Read"]
+    # app.config["MSAL_TOKEN_ENDPOINT"] = f"{AZURE_AUTHORITY}/oauth2/v2.0/token"
 
     # azure integration
-    app.config["AZURE_AUTHORITY"]=f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
-    app.config["AZURE_CLIENT_ID"]=os.environ.get("AZURE_CLIENT_ID")
-    app.config["AZURE_CLIENT_SECRET"]=os.environ.get("AZURE_CLIENT_SECRET")
-    app.config["AZURE_ENDPOINT"] = 'https://graph.microsoft.com/v1.0/users'
-    app.config["AZURE_REDIRECT_PATH"] = "/content/"
-    app.config["AZURE_SCOPE"] = ["User.Read"]
-    app.config["AZURE_TENANT_ID"]=AZURE_TENANT_ID
+    # AZURE_TENANT_ID=os.environ.get("AZURE_TENANT_ID")
+    # app.config["AZURE_AUTHORITY"]=f"https://login.microsoftonline.com/{AZURE_TENANT_ID}"
+    # app.config["AZURE_CLIENT_ID"]=os.environ.get("AZURE_CLIENT_ID")
+    # app.config["AZURE_CLIENT_SECRET"]=os.environ.get("AZURE_CLIENT_SECRET")
+    # app.config["AZURE_ENDPOINT"] = 'https://graph.microsoft.com/v1.0/users'
+    # app.config["AZURE_REDIRECT_PATH"] = "/content/"
+    # app.config["AZURE_SCOPE"] = ["User.Read"]
+    # app.config["AZURE_TENANT_ID"]=AZURE_TENANT_ID
 
     # cosmos db integration for content
     app.config["COSMOS_DB_CONNECTION_STRING"] = os.environ.get("COSMOS_DB_CONNECTION_STRING")
@@ -118,8 +118,8 @@ def set_app_config(app):
     app.config["BLOB_STORAGE_CONTAINER_NAME_TRANSCRIPTS"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_TRANSCRIPTS")
     app.config["BLOB_STORAGE_CONTAINER_NAME_VIDEO"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_VIDEO")
     app.config["BLOB_STORAGE_NAME"]=os.environ.get("BLOB_STORAGE_NAME")
+    
     # Flask environment
     app.config['SECRET_KEY'] = os.environ.get("FLASK_SESSION_SECRET")
     app.config["FLASK_DEBUG"] = int(os.environ.get("FLASK_DEBUG", 1))
     app.config["FLASK_PORT"] = int(os.environ.get("FLASK_PORT", 5000))
-    app.config["FLASK_SESSION_SECRET"] = os.environ.get("FLASK_SESSION_SECRET")

@@ -44,7 +44,9 @@ def inject_nav_model():
     'user' dictionary will be available in all templates when logged in.
 
     Returns:
-        dict: A dictionary containing the 'user' key and its corresponding value.
+        dict: 'user' and 'playlists' keys. 
+        'user' is the current user, 
+        'playlists' is a list of all playlists in the system.
     """
     model = {}
     

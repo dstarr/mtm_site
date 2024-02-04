@@ -4,15 +4,12 @@
     <div class="mb-3">
       <h2 class="content-detail-title">{{ model.content['title'] }}</h2>
     </div>
-    <div class="mb-3">
-        <div id="description">{{ model.content['description']|safe }}</div>
-    </div>
 
     <!-- links to video and other artifacts -->
     <div class="mb-3">
       <div class="btn-group content-links" role="group" aria-label="Content links">
         {% if not nav_model["user"] %}
-          <a class="btn btn-primary btn-primary-active" href="{{ url_for('auth.login') }}">Sign in for content</a>
+          <a class="btn btn-primary btn-primary-active" href="{{ url_for('auth.signin') }}" data-bs-toggle="modal" data-bs-target="#signin_modal">Sign in for content</a>
         {% else %}
           <a class="btn btn-primary btn-primary-active" href="{{ model.content['youtube_url'] }}" target="_blank">Video</a>
           {% if model.content['pdf_url'] %}
@@ -23,6 +20,11 @@
           {% endif %}
         {% endif %}
       </div>
+    </div>
+
+    <!-- description -->
+    <div class="mb-3">
+      <div id="description">{{ model.content['description']|safe }}</div>
     </div>
 
     <!-- playlists -->
