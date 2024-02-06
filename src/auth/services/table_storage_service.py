@@ -7,7 +7,7 @@ class TableStorageService():
     def __init__(self):
         self._config = current_app.config
         
-        self.connection_string = self._config["AURE_STORAGE_CONNECTION_STRING"]
+        self.connection_string = self._config["AZURE_STORAGE_CONNECTION_STRING"]
         self.table_name = self._config["TABLE_STORAGE_TABLE_NAME"]
         
         self.table_service_client = TableServiceClient.from_connection_string(conn_str=self.connection_string)
