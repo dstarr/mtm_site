@@ -22,7 +22,6 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 config.set_app_config(app)
 
 # register blueprints
-
 app.register_blueprint(auth_bp, url_prefix='/a')
 app.register_blueprint(bonus_content_bp, url_prefix='/b')
 app.register_blueprint(search_bp, url_prefix='/s')
@@ -34,8 +33,15 @@ def index():
 
 @app.errorhandler(404)
 def page_not_found(e):
+    print(f"404 error: {e}")
     error_model = ErrorModel("Resource not found", "The requested content was not found.")
     return render_template('error.html', model=error_model), 404
+
+@app.errorhandler(500)
+def error(e):
+    print(f"500 error: {e}")
+    error_model = ErrorModel("An error occurred", "Please wait a moment and try your request again.")
+    return render_template('error.html', model=error_model), 500
 
 @app.context_processor
 def inject_nav_model(): 
@@ -44,7 +50,9 @@ def inject_nav_model():
     'user' dictionary will be available in all templates when logged in.
 
     Returns:
-        dict: A dictionary containing the 'user' key and its corresponding value.
+        dict: 'user' and 'playlists' keys. 
+        'user' is the current user, 
+        'playlists' is a list of all playlists in the system.
     """
     model = {}
     

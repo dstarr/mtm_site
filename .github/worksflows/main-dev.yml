@@ -1,0 +1,59 @@
+name: Dev environment container deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+
+env:
+  AZURE_WEBAPP_NAME: mtam-dev
+  IMAGE_NAME: mtam-dev
+
+
+permissions:
+  id-token: write
+#   contents: read
+  
+jobs:
+
+  build:  
+    runs-on: ubuntu-latest
+    name: Build & push Docker DEV image
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          directory: src/
+          image: ${{ env.IMAGE_NAME }}
+          registry: ${{ secrets.ACR_LOGIN_SERVER }}
+          dockerfile: src/Dockerfile
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - run: echo ${{ env.IMAGE_NAME }}
+
+  # deploy:
+  #   # needs: build
+  #   runs-on: ubuntu-latest
+  #   name: Deploy to Azure Web App
+  #   steps:
+  #     - name: Login to Azure
+  #       uses: azure/login@v1
+  #       with:
+  #         # creds: '{"clientId":"${{ secrets.AZ_CLIENT_ID }}","clientSecret":"${{ secrets.AZ_APP_REG_SECRET }}","subscriptionId":"${{ secrets.AZ_SUBSCRIPTION }}","tenantId":"${{ secrets.AZ_TENANT_ID }}"}'
+  #         creds: ${{ secrets.AZ_CREDS }}
+
+  #     - name: Azure CLI script test
+  #       uses: azure/CLI@v1
+  #       with:
+  #         azcliversion: latest
+  #         inlineScript: |
+  #           az account show
+      
+      # - name: Deploy to Azure Web App
+      #   uses: azure/webapps-deploy@v2
+      #   with:
+      #     app-name: 'mtm-content-mgmt-web-app-dev'
+      #     slot-name: 'production'
+      #     images: '${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:latest'    

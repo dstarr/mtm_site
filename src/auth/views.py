@@ -1,6 +1,6 @@
-from flask import Blueprint, redirect, render_template, request, session, url_for
-import msal
-import config
+import datetime
+from flask import Blueprint, abort, redirect, render_template, request, session, url_for
+from .services.table_storage_service import TableStorageService
 
 
 auth_bp = Blueprint(
@@ -9,43 +9,29 @@ auth_bp = Blueprint(
     static_folder="static"
 )
 
+@auth_bp.route("/signin", methods=["POST"])
+def signin():
 
-# MSAL instance
-# msal_app = msal.ConfidentialClientApplication(
-#     config["MSAL_CLIENT_ID"],
-#     authority=config.AZURE_AUTHORITY,
-#     client_credential=config["MSAL_CLIENT_SECRET"]
-# )
-
-@auth_bp.route("/login")
-def login():
-    auth_url = msal.get_authorization_request_url(
-        config["MSAL_SCOPE"],
-        redirect_uri=url_for("authorized", _external=True)
-    )
-    return redirect(auth_url)
-
-@auth_bp.route("/authorized")
-def authorized():
-    result = auth_bp.acquire_token_by_authorization_code(
-        request.args["code"],
-        scopes=config["MSAL_SCOPE"],
-        redirect_uri=url_for("authorized", _external=True)
-    )
-    if "error" in result:
-        return f"Error: {result['error_description']}"
-
-    session["user"] = result.get("id_token_claims")
+    company_name = request.form["companyname"]
+    company_url = request.form["companyurl"]
     
-    print(session["user"])
+    # save them to the databasee
+    try:
+        table_storage_service = TableStorageService()
+        table_storage_service.insert_entity(company_name=company_name, company_url=company_url)
+    except Exception as e:
+        print("Error inserting entity")
+        abort(500)
     
-    return redirect(url_for("index"))
+    # set the user session
+    session["user"] = {
+        "company_name": company_name,
+        "company_url": company_url
+    }
+    
+    return redirect(request.referrer)
 
 @auth_bp.route("/logout")
 def logout():
-    return redirect(url_for("app.index"))
-
-# @auth_bp.before_request
-# def check_user_authenticated():
-#     if "user" not in session:
-#         return redirect(url_for('login'))
+    session.clear()
+    return redirect(request.referrer)
