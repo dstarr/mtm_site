@@ -103,3 +103,5 @@ def set_app_config(app):
     app.config['SECRET_KEY'] = os.environ.get("FLASK_SESSION_SECRET")
     app.config["FLASK_DEBUG"] = int(os.environ.get("FLASK_DEBUG", 1))
     app.config["FLASK_PORT"] = int(os.environ.get("FLASK_PORT", 5000))
+    
+    _print_env_vars()
