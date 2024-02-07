@@ -18,7 +18,7 @@ class SearchService:
         else:
             content_collection = db[self._cosmos_config["content_collection_name"]]
 
-        query = {
+        filter = {
             "$and": [
                 {
                     "is_active": {
@@ -43,7 +43,9 @@ class SearchService:
                 }
             ]
         }
+        
+        projection = projection = {"title": 1, "id": 1}
 
-        results = content_collection.find(query)
+        results = content_collection.find(filter, projection)
 
         return results.sort("title", pymongo.ASCENDING)

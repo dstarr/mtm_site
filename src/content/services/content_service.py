@@ -60,14 +60,13 @@ class ContentService:
     def get_playlist_with_content_infos(self, playlist_id):
         metadata_collection, content_collection = self._get_collections()
 
-        query = {"name": "playlists"}
-        match = { "playlists": {"$elemMatch": {"id": playlist_id}}}
+        filter = {"name": "playlists"}
+        projection = { "playlists": {"$elemMatch": {"id": playlist_id}}}
 
-        results = metadata_collection.find_one(query, match)
+        results = metadata_collection.find_one(filter=filter, projection=projection)
         
         try:
             results = results["playlists"][0]
-
         except KeyError:
             return None
 
@@ -95,13 +94,14 @@ class ContentService:
         return items
 
     def _get_content_info(self, content_id, content_collection):
-        content = content_collection.find_one({"id": content_id}, {"title": 1, "is_active": 1})
+        
+        filter = {"id": content_id}
+        projection = { "id": 1, "title": 1, "is_active": 1}
+        
+        content = content_collection.find_one(filter, projection)
 
-        return {
-            "id": content_id,
-            "title": content["title"],
-            "is_active": content["is_active"]
-        }
+        return content
+
 
     def _get_collections(self):
 
