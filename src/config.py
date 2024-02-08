@@ -11,8 +11,8 @@ def _print_env_vars():
 def _confirm_env_vars_set():
     env_vars_set = True
 
-    if os.environ.get("AURE_STORAGE_CONNECTION_STRING") == None:
-        print("AURE_STORAGE_CONNECTION_STRING is not set")
+    if os.environ.get("AZURE_STORAGE_CONNECTION_STRING") == None:
+        print("AZURE_STORAGE_CONNECTION_STRING is not set")
         env_vars_set = False
 
     if os.environ.get("BLOB_STORAGE_NAME") == None:
@@ -76,6 +76,9 @@ def _confirm_env_vars_set():
 def set_app_config(app):
     
     _confirm_env_vars_set()
+
+    # azure storage integration
+    app.config["AZURE_STORAGE_CONNECTION_STRING"]=os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
    
     # cosmos db integration for content
     app.config["COSMOS_DB_CONNECTION_STRING"] = os.environ.get("COSMOS_DB_CONNECTION_STRING")
@@ -83,8 +86,6 @@ def set_app_config(app):
     app.config["COSMOS_DB_METADATA_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_METADATA_COLLECTION_NAME")
     app.config["COSMOS_DB_NAME"] = os.environ.get("COSMOS_DB_NAME")
     
-    # azure storage integration
-    app.config["AURE_STORAGE_CONNECTION_STRING"]=os.environ.get("AURE_STORAGE_CONNECTION_STRING")
 
     # blob storage integration for files
     app.config["BLOB_STORAGE_CONTAINER_NAME_OTHER"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_OTHER")
@@ -103,3 +104,5 @@ def set_app_config(app):
     app.config['SECRET_KEY'] = os.environ.get("FLASK_SESSION_SECRET")
     app.config["FLASK_DEBUG"] = int(os.environ.get("FLASK_DEBUG", 1))
     app.config["FLASK_PORT"] = int(os.environ.get("FLASK_PORT", 5000))
+    
+    # _print_env_vars()

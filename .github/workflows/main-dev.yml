@@ -1,0 +1,48 @@
+name: DEV environment build and push
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: mtam-dev
+  IMAGE_NAME: mtam-dev
+
+permissions:
+  id-token: write
+#   contents: read
+  
+jobs:
+
+  build:  
+    runs-on: ubuntu-latest
+    name: Build & push Docker DEV image
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          addLatest: true
+          directory: src/
+          image: ${{ env.IMAGE_NAME }}
+          registry: ${{ secrets.ACR_LOGIN_SERVER }}
+          dockerfile: src/Dockerfile
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+      - run: echo ${{ env.IMAGE_NAME }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy to Azure Web App
+    steps:
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZ_CREDS }}
+      - name: Push from ACR to web app
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          images: '${{ secrets.ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}'

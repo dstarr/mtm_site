@@ -13,27 +13,39 @@ class SearchService:
         content_collection = None
 
         if db[self._cosmos_config["content_collection_name"]] is None:
-            content_collection = db.create_collection(self._cosmos_config["content_collection_name"])
+            content_collection = db.create_collection(
+                self._cosmos_config["content_collection_name"])
         else:
             content_collection = db[self._cosmos_config["content_collection_name"]]
 
-        query = {
-            "$or": [
+        filter = {
+            "$and": [
                 {
-                    "title": {
-                        "$regex": search_term,
-                        "$options": "i"
+                    "is_active": {
+                        "$eq": True
                     }
                 },
                 {
-                    "description": {
-                        "$regex": search_term,
-                        "$options": "i"
-                    }
+                    "$or": [
+                        {
+                            "title": {
+                                "$regex": search_term,
+                                "$options": "i"
+                            }
+                        },
+                        {
+                            "description": {
+                                "$regex": search_term,
+                                "$options": "i"
+                            }
+                        }
+                    ]
                 }
             ]
         }
+        
+        projection = projection = {"title": 1, "id": 1}
 
-        results = content_collection.find(query)
+        results = content_collection.find(filter, projection)
 
         return results.sort("title", pymongo.ASCENDING)

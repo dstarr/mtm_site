@@ -2,7 +2,7 @@
 
 # Provide your resource group and web app name
 resource_group="ds-mtm-content-mgmt"
-webapp_name="mtam-dev"
+webapp_name="mtam"
 
 # Read the .env file and set the environment variables
 while read -r line || [[ -n "$line" ]]; do

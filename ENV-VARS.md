@@ -1,7 +1,7 @@
 The following environmental variables are requires by this application.
 
 ```cmd
-AURE_STORAGE_CONNECTION_STRING=
+AZURE_STORAGE_CONNECTION_STRING=
 
 BLOB_STORAGE_NAME=
 BLOB_STORAGE_CONTAINER_NAME_SLIDES=
