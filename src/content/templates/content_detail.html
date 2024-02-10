@@ -39,4 +39,31 @@
       </div>
     </div>
 
+
+    <!-- 
+      Remove all links from description if user is not signed in
+     -->
+    <script>
+      window.onload = function() {
+
+        var striptags = '{{ nav_model["user"] }}';
+
+        if (striptags != 'None') {
+          return;
+        }
+
+        var descriptionDiv = document.getElementById('description');
+        var anchorTags = descriptionDiv.getElementsByTagName('a');
+    
+        while(anchorTags.length > 0) {
+            var anchorTag = anchorTags[0];
+            var parent = anchorTag.parentNode;
+            while(anchorTag.firstChild) {
+                parent.insertBefore(anchorTag.firstChild, anchorTag);
+            }
+            parent.removeChild(anchorTag);
+        }
+    }
+    </script>
+
 {% endblock %}
