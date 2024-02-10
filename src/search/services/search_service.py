@@ -44,8 +44,8 @@ class SearchService:
             ]
         }
         
-        projection = projection = {"title": 1, "id": 1}
+        projection = {"title": 1, "id": 1}
 
         results = content_collection.find(filter, projection)
-
-        return results.sort("title", pymongo.ASCENDING)
+        
+        return results
