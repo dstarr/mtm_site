@@ -1,0 +1,25 @@
+<!-- news_carousel -->
+<div class="news-container">
+<div id="news_carousel" class="carousel carousel-dark" data-bs-ride="carousel">
+    <div class="carousel-inner">
+    <div class="carousel-item news-item active">
+      <a href="https://aka.ms/MTMwebinars" target="_blank"><img src="{{ url_for('static', filename = 'carousel-news-items/slide1.png') }}" class="news-image d-block w-30" alt="Webinars" /></a>
+    </div>
+    <div class="carousel-item news-item">
+      <a href="https://aka.ms/MTMworkshops" target="_blank"><img src="{{ url_for('static', filename = 'carousel-news-items/slide2.png') }}" class="news-image d-block w-30" alt="Workshops" /></a>
+    </div>
+    <div class="carousel-item news-item">
+      <a href="https://aka.ms/MTMofficehours" target="_blank"><img src="{{ url_for('static', filename = 'carousel-news-items/slide3.png') }}" class="news-image d-block w-30" alt="Office Hours" /></a>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#news_carousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#news_carousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+<!-- end news_carousel -->
