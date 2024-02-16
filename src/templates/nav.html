@@ -1,6 +1,6 @@
-<h1>Mastering the Marketplace</h1>
+<h1 class="main-title">Mastering the Marketplace</h1>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top"">
+<nav class="navbar navbar-expand-lg sticky-top"">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -12,10 +12,10 @@
           </li>
           <!-- Courses (playlists) -->
           <li class="nav-item dropdown">
-            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Courses
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
               {% for playlist in nav_model["playlists"] %}
                 <li><a class="dropdown-item" href="{{ url_for('content.playlist', playlist_id=playlist['id']) }}">{{ playlist["short_name"] }}</a></li>
               {% endfor %}
@@ -23,10 +23,10 @@
           </li>
           <!-- Bonus content -->
           <li class="nav-item dropdown">
-            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Bonus content
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
                 <li><a class="dropdown-item" href="{{ url_for('content.content_log', num_items=5) }}">Content change log</a></li>
             </ul>
