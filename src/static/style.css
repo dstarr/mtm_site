@@ -124,6 +124,11 @@
     justify-content: center;
 }
 
+.top-nav-row {
+    background-color: #3b2e58;
+    max-height: 58px;
+}
+
 .nav-item-header {
     font-weight: bold;
     color: #3b2e58;

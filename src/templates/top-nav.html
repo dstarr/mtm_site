@@ -1,38 +1,23 @@
-<nav class="navbar navbar-expand-lg sticky-top"">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="row top-nav-row">
+  <div class="col-2"></div>
+  <div class="col-8">
 
+  <nav class="navbar navbar-expand justify-content-center">
+    <div class="container-fluid">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <!-- home -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
           </li>
-          <!-- Courses (playlists) -->
-          <li class="nav-item dropdown">
-            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Courses
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-              {% for playlist in nav_model["playlists"] %}
-                <li><a class="dropdown-item" href="{{ url_for('content.playlist', playlist_id=playlist['id']) }}">{{ playlist["short_name"] }}</a></li>
-              {% endfor %}
-            </ul>
-          </li>
-          <!-- Bonus content -->
-          <li class="nav-item dropdown">
-            <a class="active nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Bonus content
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                <li><a class="dropdown-item" href="{{ url_for('bonus_content.page', page='accelerators') }}">Technical accelerators</a></li>
-                <li><a class="dropdown-item" href="{{ url_for('content.content_log', num_items=5) }}">Content change log</a></li>
-            </ul>
-          </li>
+          
           <!-- contact -->
           <li class="nav-item">
             <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact us</a>
           </li>
+
           <!-- User -->
           {% if nav_model["user"] %}
             <li class="nav-item">
@@ -43,14 +28,25 @@
               <a class="active nav-link" href="{{ url_for('auth.signin') }}" data-bs-toggle="modal" data-bs-target="#signin_modal">Sign in</a>
             </li>
           {% endif %}
+
         </ul>
 
+        <div class="col-4" >
+
+
+
         <!-- search -->
-        <form class="d-flex" method="post" action="{{ url_for('search.search_results') }}">
-          <input class="form-control me-2" type="search" placeholder="Search content" aria-label="Search"
-          name="search_term" maxlength="30">
+          <form class="d-flex" method="post" action="{{ url_for('search.search_results') }}">
+          <input class="form-control"  type="search" placeholder="Search content" aria-label="Search"
+          name="search_term" maxlength="30" >
           <button id="search_button" class="btn text-light" type="submit">Search</button>
         </form>
-      </div>
+        </div>
+
     </div>
+  
   </nav>
+
+  </div>
+</div>
+
