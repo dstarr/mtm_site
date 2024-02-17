@@ -1,14 +1,5 @@
-.left-nav {
-    background-color: #3b2e58;
-}
-
 .main {
-    margin-top: 50px;
-
-}
-
-.bd-sidebar {
-    grid-area: sidebar;
+    margin-top: 30px;
 }
 
 .accordion-button {
@@ -99,8 +90,6 @@
     font-size: 15pt;
 }
 
-
-
 .main-title {
     margin-bottom: 20px;
 }
@@ -134,6 +123,22 @@
     width: 80%;  /* or any specific width */
     justify-content: center;
 }
+
+.nav-item-header {
+    font-weight: bold;
+    color: #3b2e58;
+}
+
+.nav-item-sidebar a, .nav-item-sidebar a:link, .nav-item-sidebar a:visited, .nav-item-sidebar a:active {
+    font-size: small;
+    color: #3b2e58;
+
+}
+
+.nav-item-sidebar a:hover {
+    background-color: #f8f9fa;
+}
+
 
 .news-image {
     width: auto;
