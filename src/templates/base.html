@@ -6,8 +6,13 @@
 
 <body>
 
+    {% include 'top-nav.html' %}
+    
     <div class="container main">
-        {% include 'nav.html' %}
+        {% include 'left-nav.html' %}
+        <h1 class="main-title">Mastering the Marketplace</h1>
+
+
         {% block content %}{% endblock %}
     </div>
 
