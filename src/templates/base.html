@@ -1,22 +1,30 @@
 <!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
+  {% include 'head.html' %}
 
-{% include 'head.html' %}
-
-<body>
-
+  <body>
     {% include 'top-nav.html' %}
-    
-    <div class="container main">
-        {% include 'left-nav.html' %}
-        <h1 class="main-title">Mastering the Marketplace</h1>
 
+    <div class="main">
+      <div class="container-xl my-md-4 bd-layout">
+        <div class="row">
+          <div class="col-3">
+            {% include 'left-nav.html' %}
+          </div>
+          <div class="col-9">
+            <main class="bd-main order-1">
 
-        {% block content %}{% endblock %}
+              {% block content %}
+
+              {% endblock %}
+            </main>
+          </div>
+        </div>
+      </div>
     </div>
 
+    {% include 'footer.html' %}
     {% include 'scripts.html' %}
-
-</body>
+  </body>
 </html>

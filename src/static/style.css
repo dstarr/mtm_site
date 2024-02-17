@@ -1,11 +1,15 @@
 .left-nav {
-    width: 10%;
-    float: left;
     background-color: #3b2e58;
 }
 
+.main {
+    margin-top: 50px;
 
+}
 
+.bd-sidebar {
+    grid-area: sidebar;
+}
 
 .accordion-button {
     box-shadow: none !important;
@@ -95,11 +99,7 @@
     font-size: 15pt;
 }
 
-.main {
-    margin-top: 50px;
-    width: 70%;
-    float: right;
-}
+
 
 .main-title {
     margin-bottom: 20px;
