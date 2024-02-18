@@ -2,6 +2,12 @@
 {% block content %}
 
   <h3 class="content-detail-title">{{ model["name"] }}</h3>
+  
+  <div>
+    {{ model["description"] | safe }}
+  </div>
+
+  <h4>Contents</h4>
 
   <div class="list-group list-group-flush">
     {% for content in model["content"]: %}
