@@ -2,19 +2,25 @@
     margin-top: 30px;
 }
 
+a {
+    color: #3b2e58;
+}
+
 .accordion-button {
     box-shadow: none !important;
-    color: #000 !important;
+    color: #3b2e58 !important;
     font-weight: bold;
-    font-size: large;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #adb5bd!important;
+    background-color: #c3b5e0!important;
     box-shadow: none !important;
-    color: #000 !important;
+    color: #3b2e58 !important;
     font-weight: bold;
-    font-size: large;
+}
+
+.bg-light {
+    background-color: #c3b5e0!important;
 }
 
 .bg-primary {
@@ -25,6 +31,12 @@
     font-family: "Segoe UI",SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 1rem;
     font-weight: 400;
+}
+
+.btn-light {
+    color: #3b2e58;
+    background-color: #c3b5e0;
+    border-color: #c3b5e0;
 }
 
 .btn-primary {
