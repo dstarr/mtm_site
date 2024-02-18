@@ -10,13 +10,19 @@
 
           <!-- home -->
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Home</a>
+            <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
           </li>
           
+          <!-- what's new -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('content.content_log', num_items=15) }}">What's new</a>
+          </li>
+
           <!-- contact -->
           <li class="nav-item">
             <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact us</a>
           </li>
+
 
           <!-- User -->
           {% if nav_model["user"] %}

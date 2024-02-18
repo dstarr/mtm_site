@@ -87,8 +87,8 @@ class ContentService:
         _, content_collection = self._get_collections()
 
         items = content_collection \
-            .find({}, {'id': 1, 'title': 1, 'date_created': 1}) \
-            .sort('date_created', 1) \
+            .find({}, {'id': 1, 'title': 1, 'date_updated': 1}) \
+            .sort('date_updated', -1) \
             .limit(num_results)
 
         return items

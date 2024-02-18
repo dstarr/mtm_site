@@ -10,7 +10,7 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Added</th>
+            <th scope="col">Added or updated</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
               <tr>
                 <th scope="row">{{ loop.index }}</th>
                 <td><a href="{{ url_for('content.index', content_id = item.id) }}">{{ item.title }}</a></td>
-                <td>{{ item.date_created.strftime('%B %d, %Y') }}</td>
+                <td>{{ item.date_updated.strftime('%B %d, %Y') }}</td>
               </tr>
             {% endfor %}
           {% endif %}

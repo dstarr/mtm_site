@@ -40,10 +40,11 @@ def playlist(playlist_id):
 
 @content_bp.route('/log/<num_items>')
 def content_log(num_items=10):
+    
+    content_log_items = []
     with current_app.app_context():
         content_service = ContentService()
-    content_log_items = content_service.get_most_recent_content(int(num_items))
-    
-    print(content_log_items)
-    
+        
+        content_log_items = content_service.get_most_recent_content(int(num_items))
+
     return render_template('content_log.html', model=content_log_items)
