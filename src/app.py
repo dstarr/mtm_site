@@ -40,8 +40,11 @@ def page_not_found(e):
 @app.errorhandler(500)
 def error(e):
     print(f"500 error: {e}")
-    error_model = ErrorModel("An error occurred", "Please wait a moment and try your request again.")
-    return render_template('error.html', model=error_model), 500
+    if app.config["FLASK_DEBUG"]:
+        raise e
+    else:
+        error_model = ErrorModel("An error occurred", "Please try your request again later.")
+        return render_template('error.html', model=error_model), 500
 
 @app.context_processor
 def inject_nav_model(): 

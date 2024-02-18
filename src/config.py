@@ -15,30 +15,6 @@ def _confirm_env_vars_set():
         print("AZURE_STORAGE_CONNECTION_STRING is not set")
         env_vars_set = False
 
-    if os.environ.get("BLOB_STORAGE_NAME") == None:
-        print("BLOB_STORAGE_NAME is not set")
-        env_vars_set = False
-
-    if os.environ.get("BLOB_STORAGE_CONTAINER_NAME_SLIDES") == None:
-        print("BLOB_STORAGE_CONTAINER_NAME_SLIDES is not set")
-        env_vars_set = False
-
-    if os.environ.get("BLOB_STORAGE_CONTAINER_NAME_PDFS") == None:
-        print("BLOB_STORAGE_CONTAINER_NAME_PDFS is not set")
-        env_vars_set = False
-
-    if os.environ.get("BLOB_STORAGE_CONTAINER_NAME_VIDEO") == None:
-        print("BLOB_STORAGE_CONTAINER_NAME_VIDEO is not set")
-        env_vars_set = False
-
-    if os.environ.get("BLOB_STORAGE_CONTAINER_NAME_TRANSCRIPTS") == None:
-        print("BLOB_STORAGE_CONTAINER_NAME_TRANSCRIPTS is not set")
-        env_vars_set = False
-        
-    if os.environ.get("BLOB_STORAGE_CONTAINER_NAME_SAMPLE_CODE") == None:
-        print("BLOB_STORAGE_CONTAINER_NAME_SAMPLE_CODE is not set")
-        env_vars_set = False
-    
     if os.environ.get("COSMOS_DB_CONNECTION_STRING") == None:
         print("COSMOS_DB_CONNECTION_STRING is not set")
         env_vars_set = False
@@ -85,16 +61,6 @@ def set_app_config(app):
     app.config["COSMOS_DB_CONTENT_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_CONTENT_COLLECTION_NAME")
     app.config["COSMOS_DB_METADATA_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_METADATA_COLLECTION_NAME")
     app.config["COSMOS_DB_NAME"] = os.environ.get("COSMOS_DB_NAME")
-    
-
-    # blob storage integration for files
-    app.config["BLOB_STORAGE_CONTAINER_NAME_OTHER"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_OTHER")
-    app.config["BLOB_STORAGE_CONTAINER_NAME_PDFS"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_PDFS")
-    app.config["BLOB_STORAGE_CONTAINER_NAME_SAMPLE_CODE"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_SAMPLE_CODE")
-    app.config["BLOB_STORAGE_CONTAINER_NAME_SLIDES"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_SLIDES")
-    app.config["BLOB_STORAGE_CONTAINER_NAME_TRANSCRIPTS"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_TRANSCRIPTS")
-    app.config["BLOB_STORAGE_CONTAINER_NAME_VIDEO"]=os.environ.get("BLOB_STORAGE_CONTAINER_NAME_VIDEO")
-    app.config["BLOB_STORAGE_NAME"]=os.environ.get("BLOB_STORAGE_NAME")
     
     # azure table storage
     app.config["TABLE_STORAGE_TABLE_NAME"]=os.environ.get("TABLE_STORAGE_TABLE_NAME")

@@ -46,9 +46,9 @@
     <script>
       window.onload = function() {
 
-        var striptags = '{{ nav_model["user"] }}';
+        var userIsLoggedIn = '{{ nav_model["user"] }}';
 
-        if (striptags != 'None') {
+        if (userIsLoggedIn != 'None') {
           return;
         }
 

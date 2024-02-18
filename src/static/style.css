@@ -33,13 +33,13 @@ a {
     font-weight: 400;
 }
 
-.btn-light {
+.btn-light, .btn-light:active, .btn-light:focus, .btn-light:hover {
     color: #3b2e58;
     background-color: #c3b5e0;
     border-color: #c3b5e0;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
     color: #fff;
     background-color: #3b2e58;
     border-color: #3b2e58;

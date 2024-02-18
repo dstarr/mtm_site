@@ -13,7 +13,7 @@ content_bp = Blueprint(
 )
 
 @content_bp.route('/<content_id>')
-def content_detail(content_id):
+def index(content_id):
     with current_app.app_context():
         content_service = ContentService()
 
@@ -25,7 +25,7 @@ def content_detail(content_id):
                 
         model = DetailModel(content=content, playlists_info=content_playlists)
     
-        return render_template('content_detail.html', model=model)
+        return render_template('content_index.html', model=model)
         
 
 @content_bp.route('/p/<playlist_id>')

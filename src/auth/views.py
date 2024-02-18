@@ -21,6 +21,7 @@ def signin():
         table_storage_service.insert_entity(company_name=company_name, company_url=company_url)
     except Exception as e:
         print("Error inserting entity")
+        print(e)
         abort(500)
     
     # set the user session
