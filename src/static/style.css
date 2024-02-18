@@ -146,6 +146,18 @@ a {
     justify-content: center;
 }
 
+.news-icon-left {
+    float: left;
+    width: 200px;
+    padding: 10px;
+}
+
+.news-icon-right {
+    float: right;
+    width: 200px;
+    padding: 10px;
+}
+
 .top-nav-row {
     background-color: #3b2e58;
     max-height: 58px;
