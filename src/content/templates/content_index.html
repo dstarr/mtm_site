@@ -9,14 +9,14 @@
     <div class="mb-3">
       <div class="btn-group content-links" role="group" aria-label="Content links">
         {% if not nav_model["user"] %}
-          <a class="btn btn-primary btn-primary-active" href="{{ url_for('auth.signin') }}" data-bs-toggle="modal" data-bs-target="#signin_modal">Sign in for content</a>
+          <a class="btn btn-primary" href="{{ url_for('auth.signin') }}" data-bs-toggle="modal" data-bs-target="#signin_modal">Sign in for content</a>
         {% else %}
-          <a class="btn btn-primary btn-primary-active" href="{{ model.content['youtube_url'] }}" target="_blank">Video</a>
+          <a class="btn btn-primary" href="{{ model.content['youtube_url'] }}" target="_blank">Video</a>
           {% if model.content['pdf_url'] %}
-            <a class="btn btn-primary btn-primary-active" href="{{ model.content['pdf_url'] }}">PDF</a>
+            <a class="btn btn-primary" href="{{ model.content['pdf_url'] }}">PDF</a>
           {% endif %}
           {% if model.content['sample_code_url'] %}
-            <a class="btn btn-primary btn-primary-active" href="{{ model.content['sample_code_url'] }}">Sample code</a>
+            <a class="btn btn-primary" href="{{ model.content['sample_code_url'] }}">Sample code</a>
           {% endif %}
         {% endif %}
       </div>
@@ -29,7 +29,7 @@
 
     <!-- playlists -->
     <div class="mb-3">
-      <label for="playlists" class="form-label">Playlists</label>
+      <label for="playlists" class="form-label">This content lives in these courses</label>
       <div id="playlists" class="list-group list-group-flush">
         {% for playlist_info in model.playlists_info %}
           <div class="list-group-item list-group-item-action">
