@@ -44,12 +44,7 @@ class ContentService:
         metadata_collection, _ = self._get_collections()
 
         playlist = metadata_collection.find_one(
-            {
-                "name": "playlists"
-            },
-            {
-                "playlists": {"$elemMatch": {"id": id}}
-            }
+            {"name": "playlists"}, {"playlists": {"$elemMatch": {"id": id}}}
         )
 
         if playlist is None:
@@ -61,10 +56,10 @@ class ContentService:
         metadata_collection, content_collection = self._get_collections()
 
         filter = {"name": "playlists"}
-        projection = { "playlists": {"$elemMatch": {"id": playlist_id}}}
+        projection = {"playlists": {"$elemMatch": {"id": playlist_id}}}
 
         results = metadata_collection.find_one(filter=filter, projection=projection)
-        
+
         try:
             results = results["playlists"][0]
         except KeyError:
@@ -72,11 +67,15 @@ class ContentService:
 
         playlist = results
 
-        sorted_playlist_content = sorted(playlist["content"], key=lambda x: x['display_order'])
+        sorted_playlist_content = sorted(
+            playlist["content"], key=lambda x: x["display_order"]
+        )
 
         content_infos = []
         for content_pointer in sorted_playlist_content:
-            content_info = self._get_content_info(content_pointer["id"], content_collection)
+            content_info = self._get_content_info(
+                content_pointer["id"], content_collection
+            )
             if content_info["is_active"] == True:
                 content_infos.append(content_info)
 
@@ -86,27 +85,28 @@ class ContentService:
     def get_most_recent_content(self, num_results):
         _, content_collection = self._get_collections()
 
-        items = content_collection \
-            .find({}, {'id': 1, 'title': 1, 'date_updated': 1}) \
-            .sort('date_updated', -1) \
+        filter = {"is_active": {"$eq": True}}
+
+        items = (
+            content_collection.find(filter, {"id": 1, "title": 1, "date_updated": 1})
+            .sort("date_updated", -1)
             .limit(num_results)
+        )
 
         return items
 
     def _get_content_info(self, content_id, content_collection):
-        
+
         filter = {"id": content_id}
-        projection = { "id": 1, "title": 1, "is_active": 1}
-        
+        projection = {"id": 1, "title": 1, "is_active": 1}
+
         content = content_collection.find_one(filter, projection)
 
         return content
 
-
     def _get_collections(self):
 
-        client = pymongo.MongoClient(
-            self._config["COSMOS_DB_CONNECTION_STRING"])
+        client = pymongo.MongoClient(self._config["COSMOS_DB_CONNECTION_STRING"])
         db = client[self._config["COSMOS_DB_NAME"]]
 
         content_collection = db[self._config["COSMOS_DB_CONTENT_COLLECTION_NAME"]]
