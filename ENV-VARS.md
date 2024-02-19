@@ -1,4 +1,4 @@
-The following environmental variables are requires by this application.
+The following environmental variables are required by this application.
 
 ```cmd
 AZURE_STORAGE_CONNECTION_STRING=
