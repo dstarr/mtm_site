@@ -7,12 +7,23 @@
     {{ model["description"] | safe }}
   </div>
 
-  <h4>Contents</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <div class="list-group list-group-flush">
-    {% for content in model["content"]: %}
-      <a href="{{ url_for('content.index', content_id=content['id']) }}" class="list-group-item list-group-item-action list-item-content-title">{{ content["title"] }}</a>
-    {% endfor %}
-  </div>
-  
+      {% for content in model["content"]: %}
+      <tr>
+        <th scope="row">{{ loop.index }} </th>
+        <td><a href="{{ url_for('content.index', content_id=content['id']) }}">{{ content["title"] }}</a></td>
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
 {% endblock %}
