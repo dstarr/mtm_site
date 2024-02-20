@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% block title %}{{ model.get_playlist()["name"] }}{% endblock %}
+
 {% block content %}
 
   <h3 class="content-detail-title">{{ model.get_playlist()["name"] }}</h3>
