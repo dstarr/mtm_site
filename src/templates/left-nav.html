@@ -1,4 +1,6 @@
 <ul class="nav flex-column">
+
+  <!-- courses section -->
   <li class="nav-item nav-item-header">
     Courses
   </li>
@@ -7,10 +9,10 @@
     <li class="nav-item nav-item-sidebar"><a class="nav-link" href="{{ url_for('content.playlist', playlist_id=playlist['id']) }}">{{ playlist["short_name"] }}</a></li>
   {% endfor %}
 
+  <!-- resources section -->
   <li class="nav-item nav-item-header">
     Resources
   </li>
-
   <li class="nav-item nav-item-sidebar">
     <a class="nav-link" href="{{ url_for('bonus_content.page', page='choose_your_offer_type') }}">Choose your offer type</a>
   </li>
@@ -24,11 +26,10 @@
     <a class="nav-link" href="{{ url_for('content.content_log', num_items=10) }}">What's new on the site</a>
   </li>
   
+  <!-- events section -->
   <li class="nav-item nav-item-header">
     Events
   </li>
-  
-  
   <li class="nav-item nav-item-sidebar">
     <a class="nav-link" href="https://aka.ms/MTMworkshops">Live workshops</a>
   </li>
