@@ -1,6 +1,7 @@
 from flask import current_app, make_response
 from datetime import datetime
 import pymongo
+from content.models.playlist_with_content_info_model import PlaylistWithContentInfoModel
 
 
 class ContentService:
@@ -59,28 +60,22 @@ class ContentService:
         projection = {"playlists": {"$elemMatch": {"id": playlist_id}}}
 
         results = metadata_collection.find_one(filter=filter, projection=projection)
-
-        try:
-            results = results["playlists"][0]
-        except KeyError:
-            return None
-
-        playlist = results
-
-        sorted_playlist_content = sorted(
-            playlist["content"], key=lambda x: x["display_order"]
-        )
-
-        content_infos = []
-        for content_pointer in sorted_playlist_content:
-            content_info = self._get_content_info(
-                content_pointer["id"], content_collection
-            )
-            if content_info["is_active"] == True:
-                content_infos.append(content_info)
-
-        playlist["content"] = content_infos
-        return playlist
+        playlist = results["playlists"][0]
+        content_ids = [content["id"] for content in playlist["content"]]
+        
+        filter = filter = { 
+                    "id": { 
+                        "$in": content_ids
+                    },
+                    "is_active": { "$ne": False }
+                }
+        projection = { "id": 1, "title": 1, "is_active": 1 }
+        content_docs = content_collection.find(filter, projection)
+             
+        model = PlaylistWithContentInfoModel(playlist=playlist, content_infos=content_docs)
+        
+        return model
+                
 
     def get_most_recent_content(self, num_results):
         _, content_collection = self._get_collections()
