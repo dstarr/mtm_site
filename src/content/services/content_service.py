@@ -56,13 +56,16 @@ class ContentService:
     def get_playlist_with_content_infos(self, playlist_id):
         metadata_collection, content_collection = self._get_collections()
 
+        # get the right playlist
         filter = {"name": "playlists"}
         projection = {"playlists": {"$elemMatch": {"id": playlist_id}}}
-
         results = metadata_collection.find_one(filter=filter, projection=projection)
+
         playlist = results["playlists"][0]
         content_ids = [content["id"] for content in playlist["content"]]
         
+        # get the content info for each content id in the playlist
+        # and only include the active content
         filter = filter = { 
                     "id": { 
                         "$in": content_ids
@@ -72,10 +75,8 @@ class ContentService:
         projection = { "id": 1, "title": 1, "is_active": 1 }
         content_docs = list(content_collection.find(filter, projection))
              
-             
-             
+        # sort the docs to appear in the same order as the content_ids from the playlist
         content_docs.sort(key=lambda x: content_ids.index(x['id']))
-             
              
         model = PlaylistWithContentInfoModel(playlist=playlist, content_infos=content_docs)
         
