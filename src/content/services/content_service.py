@@ -70,7 +70,12 @@ class ContentService:
                     "is_active": { "$ne": False }
                 }
         projection = { "id": 1, "title": 1, "is_active": 1 }
-        content_docs = content_collection.find(filter, projection)
+        content_docs = list(content_collection.find(filter, projection))
+             
+             
+             
+        content_docs.sort(key=lambda x: content_ids.index(x['id']))
+             
              
         model = PlaylistWithContentInfoModel(playlist=playlist, content_infos=content_docs)
         
