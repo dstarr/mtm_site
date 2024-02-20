@@ -82,7 +82,6 @@ class ContentService:
         
         return model
                 
-
     def get_most_recent_content(self, num_results):
         _, content_collection = self._get_collections()
 
@@ -95,15 +94,6 @@ class ContentService:
         )
 
         return items
-
-    def _get_content_info(self, content_id, content_collection):
-
-        filter = {"id": content_id}
-        projection = {"id": 1, "title": 1, "is_active": 1}
-
-        content = content_collection.find_one(filter, projection)
-
-        return content
 
     def _get_collections(self):
 
