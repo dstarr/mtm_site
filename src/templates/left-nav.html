@@ -10,6 +10,7 @@
   <li class="nav-item nav-item-header">
     Resources
   </li>
+
   <li class="nav-item nav-item-sidebar">
     <a class="nav-link" href="{{ url_for('bonus_content.page', page='choose_your_offer_type') }}">Choose your offer type</a>
   </li>
@@ -20,6 +21,15 @@
     <a class="nav-link" href="{{ url_for('bonus_content.page', page='playbooks') }}">Marketplace playbooks</a>
   </li>
   <li class="nav-item nav-item-sidebar">
+    <a class="nav-link" href="{{ url_for('content.content_log', num_items=10) }}">What's new on the site</a>
+  </li>
+  
+  <li class="nav-item nav-item-header">
+    Events
+  </li>
+  
+  
+  <li class="nav-item nav-item-sidebar">
     <a class="nav-link" href="https://aka.ms/MTMworkshops">Live workshops</a>
   </li>
   <li class="nav-item nav-item-sidebar">
@@ -27,9 +37,6 @@
   </li>
   <li class="nav-item nav-item-sidebar">
     <a class="nav-link" href="https://aka.ms/MTMofficehours">Office Hours Q&A</a>
-  </li>
-  <li class="nav-item nav-item-sidebar">
-    <a class="nav-link" href="{{ url_for('content.content_log', num_items=10) }}">What's new on the site</a>
   </li>
   
 </ul>
