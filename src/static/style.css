@@ -140,9 +140,7 @@ a {
 }
 
 .news-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;  /* or any specific width */
+    width: 100%;  /* or any specific width */
     justify-content: center;
 }
 
@@ -182,12 +180,6 @@ a {
 .news-image {
     width: auto;
     height: auto;
-}
-
-.news-item {
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
 }
 
 .short_input {
