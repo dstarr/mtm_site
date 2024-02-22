@@ -146,6 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 .news-container {
     width: 100%;  /* or any specific width */
     justify-content: center;
+    height: 405;
 }
 
 .news-icon-left {
