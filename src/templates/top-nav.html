@@ -1,58 +1,51 @@
-<div class="row top-nav-row">
+<div class="row top-nav-row sticky-top">
   <div class="col-2"></div>
   <div class="col-8">
 
-  <nav class="navbar navbar-expand justify-content-center">
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand justify-content-center">
+      <div class="container-fluid">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <!-- home -->
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
-          </li>
-          
-          <!-- what's new -->
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('content.content_log', num_items=15) }}">What's new</a>
-          </li>
-
-          <!-- contact -->
-          <li class="nav-item">
-            <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact us</a>
-          </li>
+              <!-- home -->
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Home</a>
+              </li>
+              
+              <!-- contact -->
+              <li class="nav-item">
+                <a class="nav-link active" target="_blank" href="https://forms.office.com/r/0gCrzhSMkw">Contact us</a>
+              </li>
 
 
-          <!-- User -->
-          {% if nav_model["user"] %}
-            <li class="nav-item">
-              <a class="active nav-link" href="{{ url_for('auth.logout') }}">Sign out</a>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="active nav-link" href="{{ url_for('auth.signin') }}" data-bs-toggle="modal" data-bs-target="#signin_modal">Sign in</a>
-            </li>
-          {% endif %}
+              <!-- User -->
+              {% if nav_model["user"] %}
+                <li class="nav-item">
+                  <a class="active nav-link" href="{{ url_for('auth.logout') }}">Sign out</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="active nav-link" href="{{ url_for('auth.signin') }}" data-bs-toggle="modal" data-bs-target="#signin_modal">Sign in</a>
+                </li>
+              {% endif %}
 
-        </ul>
+            </ul>
 
-        <div class="col-4" >
+            <div class="col-4" >
+              <!-- search -->
+              <form class="d-flex" method="post" action="{{ url_for('search.search_results') }}">
+                <input class="form-control"  type="search" placeholder="Search content" aria-label="Search"
+                name="search_term" maxlength="30" >
+                <button id="search_button" class="btn text-light" type="submit">Search</button>
+              </form>
+            </div>
 
-
-
-        <!-- search -->
-          <form class="d-flex" method="post" action="{{ url_for('search.search_results') }}">
-          <input class="form-control"  type="search" placeholder="Search content" aria-label="Search"
-          name="search_term" maxlength="30" >
-          <button id="search_button" class="btn text-light" type="submit">Search</button>
-        </form>
         </div>
 
-    </div>
-  
-  </nav>
-
+      </div>
+    </nav>
   </div>
+  <div class="col-2"></div>
 </div>
 
