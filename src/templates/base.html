@@ -14,11 +14,19 @@
   </head>
 
   <body>
-    {% include 'top-nav.html' %}
+    
 
-    <div class="main">
-      <div class="container-xl my-md-4 bd-layout">
-        <div class="row justify-content-md-center">
+    <div class="container-fluid sticky-top">
+      <div class="row top-nav-row sticky-top">
+      <div class="col-2"></div>
+      <div class="col-8">
+            {% include 'top-nav.html' %}
+        </div>
+      </div>  
+    </div>
+
+        <div class="container-xl container-fluid">
+          <div class="row justify-content-md-center">
           <div class="col-2">
               {% include 'left-nav.html' %}
           </div>
@@ -32,7 +40,6 @@
           </div>
         </div>
       </div>
-    </div>
 
     {% include 'footer.html' %}
     {% include 'scripts.html' %}
