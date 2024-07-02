@@ -4,7 +4,7 @@ The following environmental variables are requires by this application.
 # The following two settings are connection strings set in the 
 # web application instance
 AZURE_STORAGE_CONNECTION_STRING=
-COSMOS_DB_CONNECTION_STRING=mongodb:// ...
+CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING=mongodb:// ...
 
 COSMOS_DB_NAME=
 COSMOS_DB_CONTENT_COLLECTION_NAME=

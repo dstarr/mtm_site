@@ -15,8 +15,8 @@ def _confirm_env_vars_set():
         print("AZURE_STORAGE_CONNECTION_STRING is not set")
         env_vars_set = False
 
-    if os.environ.get("COSMOS_DB_CONNECTION_STRING") == None:
-        print("COSMOS_DB_CONNECTION_STRING is not set")
+    if os.environ.get("CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING") == None:
+        print("CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING is not set")
         env_vars_set = False
 
     if os.environ.get("COSMOS_DB_NAME") == None:
@@ -57,7 +57,7 @@ def set_app_config(app):
     app.config["AZURE_STORAGE_CONNECTION_STRING"]=os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
    
     # cosmos db integration for content
-    app.config["COSMOS_DB_CONNECTION_STRING"] = os.environ.get("COSMOS_DB_CONNECTION_STRING")
+    app.config["CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING"] = os.environ.get("CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING")
     app.config["COSMOS_DB_CONTENT_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_CONTENT_COLLECTION_NAME")
     app.config["COSMOS_DB_METADATA_COLLECTION_NAME"] = os.environ.get("COSMOS_DB_METADATA_COLLECTION_NAME")
     app.config["COSMOS_DB_NAME"] = os.environ.get("COSMOS_DB_NAME")
