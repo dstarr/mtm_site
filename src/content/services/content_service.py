@@ -38,6 +38,9 @@ class ContentService:
         metadata_collection, _ = self._get_collections()
 
         playlists = metadata_collection.find_one({"name": "playlists"})
+        
+        if playlists is None:
+            raise ValueError("Playlists not found")
 
         return playlists["playlists"]
 
@@ -49,7 +52,7 @@ class ContentService:
         )
 
         if playlist is None:
-            return None
+            raise ValueError("Playlist not found")
 
         return playlist["playlists"][0]
 
