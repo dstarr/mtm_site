@@ -14,7 +14,7 @@ search_bp = Blueprint(
 def before_request():
     global cosmos_config
     cosmos_config = {
-        "connection_string": current_app.config["CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING"],
+        "connection_string": current_app.config["COSMOS_DB_CONNECTION_STRING"],
         "db_name": current_app.config["COSMOS_DB_NAME"],
         "content_collection_name": current_app.config["COSMOS_DB_CONTENT_COLLECTION_NAME"],
     }
