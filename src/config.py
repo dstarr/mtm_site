@@ -11,8 +11,8 @@ def _print_env_vars():
 def _confirm_env_vars_set():
     env_vars_set = True
 
-    if os.environ.get("AZURE_STORAGE_CONNECTION_STRING") == None:
-        print("AZURE_STORAGE_CONNECTION_STRING is not set")
+    if os.environ.get("CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING") == None:
+        print("CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING is not set")
         env_vars_set = False
 
     if os.environ.get("CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING") == None:
@@ -54,7 +54,7 @@ def set_app_config(app):
     _confirm_env_vars_set()
 
     # azure storage integration
-    app.config["AZURE_STORAGE_CONNECTION_STRING"]=os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+    app.config["CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING"]=os.environ.get("CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING")
    
     # cosmos db integration for content
     app.config["CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING"] = os.environ.get("CUSTOMCONNSTR_COSMOS_DB_CONNECTION_STRING")
